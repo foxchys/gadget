@@ -75,6 +75,7 @@ BEGIN_MESSAGE_MAP(Crand_codeDlg, CDialogEx)
 	ON_BN_CLICKED(IDC_BUTTON4, &Crand_codeDlg::OnBnClickedButton4)
 	ON_BN_CLICKED(IDC_BUTTON5, &Crand_codeDlg::OnBnClickedButton5)
 	ON_WM_TIMER()
+	ON_BN_CLICKED(IDOK, &Crand_codeDlg::OnBnClickedOk)
 END_MESSAGE_MAP()
 
 
@@ -112,6 +113,9 @@ BOOL Crand_codeDlg::OnInitDialog()
 	// TODO: Add extra initialization here
 	srand((unsigned)time(NULL));
 	codenumber = 0;
+	interval_times = 0;
+	m_times = 0;
+	m_number = 0;
 	GetDlgItem(IDC_BUTTON1)->SetWindowTextW(_T("设定乱码个数"));
 	GetDlgItem(IDC_BUTTON5)->SetWindowTextW(_T("设定间隔时间"));
 	GetDlgItem(IDC_BUTTON2)->SetWindowTextW(_T("生成一组乱码"));
@@ -315,6 +319,8 @@ void Crand_codeDlg::OnBnClickedButton4()
 	{
 		GetDlgItem(IDC_BUTTON1)->EnableWindow(false);
 		GetDlgItem(IDC_BUTTON5)->EnableWindow(false);
+		GetDlgItem(IDC_EDIT1)->EnableWindow(false);
+		GetDlgItem(IDC_EDIT3)->EnableWindow(false);
 		GetDlgItem(IDC_BUTTON4)->SetWindowTextW(_T("关闭自动"));
 		SetTimer(1, interval_times, NULL);
 	}
@@ -322,6 +328,8 @@ void Crand_codeDlg::OnBnClickedButton4()
 	{
 		GetDlgItem(IDC_BUTTON4)->SetWindowTextW(_T("打开自动"));
 		KillTimer(1);
+		GetDlgItem(IDC_EDIT1)->EnableWindow(true);
+		GetDlgItem(IDC_EDIT3)->EnableWindow(true);
 		GetDlgItem(IDC_BUTTON1)->EnableWindow(true);
 		GetDlgItem(IDC_BUTTON5)->EnableWindow(true);
 	}
@@ -358,4 +366,15 @@ void Crand_codeDlg::OnBnClickedButton5()
 	temp.Format(_T("设定自动生成乱码间隔时间为%dms！"), interval_times);
 	AfxMessageBox(temp);
 	return;
+}
+
+
+void Crand_codeDlg::OnBnClickedOk()
+{
+	// TODO: Add your control notification handler code here
+	UpdateData(true);
+	m_times = 0;
+	m_number = 0;
+	UpdateData(false);
+	CDialogEx::OnOK();
 }

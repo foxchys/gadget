@@ -52,4 +52,5 @@ public:
 	afx_msg void OnBnClickedButton4();
 	afx_msg void OnTimer(UINT_PTR nIDEvent);
 	afx_msg void OnBnClickedButton5();
+	afx_msg void OnBnClickedOk();
 };
