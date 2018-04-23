@@ -329,7 +329,7 @@ void Crand_codeDlg::OnBnClickedButton4()
 		GetDlgItem(IDC_BUTTON4)->SetWindowTextW(_T("打开自动"));
 		KillTimer(1);
 		GetDlgItem(IDC_EDIT1)->EnableWindow(true);
-		GetDlgItem(IDC_EDIT3)->EnableWindow(true);
+		//GetDlgItem(IDC_EDIT3)->EnableWindow(true);
 		GetDlgItem(IDC_BUTTON1)->EnableWindow(true);
 		GetDlgItem(IDC_BUTTON5)->EnableWindow(true);
 	}
